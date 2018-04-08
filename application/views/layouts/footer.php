@@ -1,0 +1,1 @@
+<footer class="footer"> © <?=$this->config->item('tahun_berdiri').' '.$this->config->item('nama_aplikasi')?> </footer>
