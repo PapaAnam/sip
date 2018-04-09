@@ -80,7 +80,7 @@ class Akunmodel extends CI_Model{
 	{
 		unset($data['konfirmasi_password']);
 		$data['password']   = md5($data['password']);
-		$this->db->where('id', $id)->update('akun', $data);
+		$this->db->where('id', $id)->update($this->table, $data);
 	}
 
 	public function hapus($id)

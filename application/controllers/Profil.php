@@ -100,7 +100,8 @@ class Profil extends CI_Controller {
 			}
 			$this->load->model('akunmodel', 'am');
 			$user = $this->am->get_by_username($this->session->username);
-			$this->am->update($user->id, $update_data);
+			$this->am->update($user->akun_id, $update_data);
+			// dd($user->akun_id);
 			$this->session->set_userdata('success_msg', 'Akun berhasil diperbarui');
 			$destroy_session = function(){
 				$this->session->unset_userdata('username');
