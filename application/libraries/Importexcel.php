@@ -61,23 +61,40 @@ class Importexcel
 		return $columns;
 	}
 
-	public function create()
+	public function create($filename, $data)
 	{
+		$kolom = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ'];
 		$ci =& get_instance();
 		$ci->load->helper('download');
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
-		return $sheet;
-		$sheet->setCellValue('A1', 'Hello World !');
-
+		$baris = 2;
+		$kolom_atas = array_keys($data[0]);
+		$i = 0;
+		// dd($kolom_atas);
+		foreach ($kolom_atas as $k) {
+			$sheet->setCellValue($kolom[$i].'1', $k);
+			$i++;
+		}
+		// $writer = new Xlsx($spreadsheet);
+		// $writer->save($filename);
+		// force_download($filename, NULL);
+		// return;
+		foreach ($data as $d) {
+			$i = 0;
+			// dd($d);
+			foreach ($d as $kol) {
+				// dd($kolom[$i].$baris);
+				// dd($kolom[$i+1].$baris);
+				$sheet->setCellValue($kolom[$i].$baris, $kol);
+				$i++;
+			}
+			$baris++;
+		}
 		$writer = new Xlsx($spreadsheet);
 		$writer->save($filename);
 		force_download($filename, NULL);
-		// Redirect output to a client's web browser (Xlsx)
-		// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		// header('Content-Disposition: attachment;filename="01simple.xlsx"');
-		// header('Cache-Control: max-age=0');
-		// $writer = IOFactory::createWriter($spreadsheet, 'Xls');
-		// $writer->save('php://output');
 	}
+
+	
 }

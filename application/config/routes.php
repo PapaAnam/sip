@@ -49,13 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] 				= 'dasbor';
-$route['penggajian/slip/pdf/(:num)'] 		= 'penggajian/slip_pdf/$1';
-$route['penggajian/(:num)/(:num)/cetak'] 	= 'penggajian/cetak/$1/$2';
-$route['penggajian/(:num)/(:num)/pdf'] 		= 'penggajian/pdf/$1/$2';
-$route['penggajian/(:num)/(:num)'] 			= 'penggajian/index';
-$route['akun/cetak'] 						= 'akun/cetak';
-$route['akun/pdf'] 							= 'akun/pdf';
-$route['gaji-saya'] 						= 'gajisaya';
-$route['404_override'] 						= 'myerror';
-$route['translate_uri_dashes'] 				= FALSE;
+$route['default_controller'] 						= 'dasbor';
+$route['penggajian/slip/pdf/(:num)'] 				= 'penggajian/slip_pdf/$1';
+$route['penggajian/(:num)/(:num)/(:any)/cetak'] 	= 'penggajian/cetak/$1/$2/$3';
+$route['penggajian/(:num)/(:num)/(:any)/pdf'] 		= 'penggajian/pdf/$1/$2/$3';
+$route['penggajian/(:num)/(:num)/(:any)/excel'] 	= 'penggajian/excel/$1/$2/$3';
+$route['penggajian/(:num)/(:num)/(:any)'] 			= 'penggajian/index/$1/$2/$3';
+$route['akun/cetak'] 								= 'akun/cetak';
+$route['akun/pdf'] 									= 'akun/pdf';
+$route['gaji-saya'] 								= 'gajisaya';
+$route['404_override'] 								= 'myerror';
+$route['translate_uri_dashes'] 						= FALSE;

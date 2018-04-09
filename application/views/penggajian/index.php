@@ -42,6 +42,20 @@
                     </select>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label></label>
+                    <select name="grup" class="form-control form-control-line">
+                        <?php 
+                        foreach ($grup as $g) {
+                            ?>
+                            <option <?=$this->uri->segment(4) == $g->grup ? 'selected' : ''?> value="<?=$g->grup?>"><?=$g->grup?></option>
+                            <?php 
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for=""></label>
@@ -49,8 +63,9 @@
                     <?php
                     if($this->uri->segment(2) && $this->uri->segment(3)){
                         ?>
-                        <a target="_blank" style="margin-top: 25px;" href="<?=base_url('penggajian/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/cetak')?>" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print"></i> Cetak</a>
-                        <a target="_blank" style="margin-top: 25px;" href="<?=base_url('penggajian/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/pdf')?>" class="btn btn-info waves-effect waves-light"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                        <a target="_blank" style="margin-top: 25px;" href="<?=base_url('penggajian/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/cetak')?>" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print"></i> Cetak</a>
+                        <a target="_blank" style="margin-top: 25px;" href="<?=base_url('penggajian/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf')?>" class="btn btn-info waves-effect waves-light"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                        <a target="_blank" style="margin-top: 25px;" href="<?=base_url('penggajian/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/excel')?>" class="btn btn-success waves-effect waves-light"><i class="fa fa-file-excel-o"></i> Excel</a>
                         <?php 
                     }
                     ?>
@@ -59,7 +74,10 @@
             <?php if($this->uri->segment(2) && $this->uri->segment(3)){ ?>
             <div class="col-md-12">
                 <div class="alert alert-info">
-                    Menampilkan penggajian pada periode <strong><?=bulan($this->uri->segment(3)).' '.$this->uri->segment(2)?></strong>
+                    Menampilkan penggajian pada periode 
+                    <strong>
+                        <?=bulan($this->uri->segment(3)).' '.$this->uri->segment(2)?> grup <?=$this->uri->segment(4)?>
+                    </strong>
                 </div>
             </div>
             <?php } ?>
@@ -79,6 +97,7 @@
                                 <th>Karyawan</th>
                                 <th>Divisi</th>
                                 <th>Jabatan</th>
+                                <th>Grup</th>
                                 <th>Periode</th>
                                 <th>Tanggal Gajian</th>
                                 <th>Gaji Pokok</th>
@@ -102,6 +121,7 @@
                                 <td><?=$d->nama?></td>
                                 <td><?=$d->divisi?></td>
                                 <td><?=$d->jabatan?></td>
+                                <td><?=$d->grup?></td>
                                 <td><?=bulan($d->bulan).' '.$d->tahun?></td>
                                 <td><?=tgl_indo($d->tgl_gaji)?></td>
                                 <td><?=rp($d->gaji_pokok)?></td>
@@ -147,6 +167,7 @@
     function filter(){
         var tahun = document.getElementsByName('tahun')[0].value
         var bulan = document.getElementsByName('bulan')[0].value
-        window.location = '<?=base_url('penggajian')?>/'+tahun+'/'+bulan
+        var grup = document.getElementsByName('grup')[0].value
+        window.location = '<?=base_url('penggajian')?>/'+tahun+'/'+bulan+'/'+grup
     }
 </script>

@@ -85,4 +85,9 @@ class Karyawanmodel extends CI_Model{
 		->get('karyawan')
 		->result();
 	}
+
+	public function get_grup()
+	{
+		return $this->db->select('grup')->from('karyawan')->group_by('grup')->get()->result();
+	}
 }

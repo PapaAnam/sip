@@ -10,6 +10,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Divisi</th>
+                                <th>Jabatan</th>
+                                <th>Grup</th>
                                 <th>Periode</th>
                                 <th>Tanggal Gajian</th>
                                 <th>Gaji Pokok</th>
@@ -30,6 +33,9 @@
                             <?php $a=1;foreach($data as $d) { ?>
                             <tr>
                                 <td><?=$a++?></td>
+                                <td><?=$d->divisi?></td>
+                                <td><?=$d->jabatan?></td>
+                                <td><?=$d->grup?></td>
                                 <td><?=bulan($d->bulan).' '.$d->tahun?></td>
                                 <td><?=tgl_indo($d->tgl_gaji)?></td>
                                 <td><?=rp($d->gaji_pokok)?></td>

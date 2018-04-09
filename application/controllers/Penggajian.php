@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Penggajian extends CI_Controller {
 
 	public function __construct()
@@ -17,15 +20,18 @@ class Penggajian extends CI_Controller {
 
 	private $is_update = false;
 
-	public function index($tahun = '', $bulan = '')
+	public function index($tahun = '', $bulan = '', $grup_where = '')
 	{
 		$tahun = $this->uri->segment(2) == '' ? date('Y') : $this->uri->segment(2);
 		$bulan = $this->uri->segment(3) == '' ? date('m') : $this->uri->segment(3);
+		$this->load->model('karyawanmodel', 'km');
+		$grup  = $this->km->get_grup();
 		$this->load->library('myview');
 		$this->load->model('penggajianmodel', 'pm');
 		$this->myview->table('penggajian/index', [
 			'title'		=> 'Penggajian',
-			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan)
+			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan, $grup_where),
+			'grup'		=> $grup,
 		]);
 	}
 
@@ -152,28 +158,72 @@ class Penggajian extends CI_Controller {
 		$this->pdfgenerator->generate($html, 'slip gaji '.date('Y-m-d H:i:s'), true, 'Legal', 'portrait', 1);
 	}
 
-	public function cetak($tahun = '', $bulan = '')
+	public function cetak($tahun = '', $bulan = '', $grup_where = '')
 	{
 		$tahun = $this->uri->segment(2) == '' ? date('Y') : $this->uri->segment(2);
 		$bulan = $this->uri->segment(3) == '' ? date('m') : $this->uri->segment(3);
 		$this->load->model('penggajianmodel', 'pm');
 		$this->load->view('penggajian/cetak', [
 			'title'		=> 'Cetak Penggajian',
-			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan)
+			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan, $grup_where)
 		]);
 	}
 
-	public function pdf($tahun = '', $bulan = '')
+	public function pdf($tahun = '', $bulan = '', $grup_where = '')
 	{
 		$tahun = $this->uri->segment(2) == '' ? date('Y') : $this->uri->segment(2);
 		$bulan = $this->uri->segment(3) == '' ? date('m') : $this->uri->segment(3);
 		$this->load->model('penggajianmodel', 'pm');
 		$html = $this->load->view('penggajian/cetak', [
 			'title'		=> 'Cetak Penggajian',
-			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan),
+			'data'		=> $this->pm->data_dg_karyawan_filter($tahun, $bulan, $grup_where),
 			'is_pdf'	=> true,
 		], true);
 		$this->load->library('pdfgenerator');
-		$this->pdfgenerator->generate($html, 'data penggajian periode '.bulan($bulan).' '.$tahun.' '.date('Y-m-d H:i:s'), true, 'a3', 'landscape', 1);
+		$this->pdfgenerator->generate($html, 'data penggajian periode '.bulan($bulan).' '.$tahun.' grup '.$grup_where.' '.date('Y-m-d H:i:s'), true, 'a3', 'landscape', 1);
+	}
+
+	public function excel($tahun = '', $bulan = '', $grup_where = '')
+	{
+		$this->load->model('penggajianmodel', 'pm');
+		$data = $this->pm->data_dg_karyawan_filter($tahun, $bulan, $grup_where);
+		$data_baru = [];
+		$i = 1;
+		foreach ($data as $d) {
+			$data_baru[] = [
+				'#'					=> $i++,
+				'Karyawan'			=> $d->nama,
+				'NIK'				=> $d->nik,
+				'TTL'				=> $d->kota_lahir.', '.tgl_indo($d->tgl_lahir),
+				'Tgl Gabung'		=> tgl_indo($d->tgl_gabung),
+				'Masa Kerja'		=> $d->masa_kerja,
+				'Grup'				=> $d->grup,
+				'Divisi'			=> $d->divisi,
+				'Jabatan'			=> $d->jabatan,
+				'Grade'				=> $d->grade,
+				'No Rek'			=> $d->no_rek,
+				'Pendidikan'		=> $d->pendidikan,
+				'Status Kawin</th'	=> $d->status_kawin,
+				'No NPWP'			=> $d->no_npwp,
+				'Divisi'			=> $d->divisi, 
+				'Jabatan'			=> $d->jabatan,
+				'Grup'				=> $d->grup,
+				'Periode'			=> bulan($d->bulan).' '.$d->tahun,
+				'Tanggal Gajian'	=> $d->gaji_pokok,
+				'Gaji Pokok'		=> $d->gaji_pokok,
+				'Tunjangan'			=> $d->tunjangan,
+				'Uang Harian'		=> $d->uang_harian,
+				'Lembur'			=> $d->lembur,
+				'THR'				=> $d->thr,
+				'Bonus'				=> $d->bonus,
+				'Cicilan'			=> $d->cicilan,
+				'Sisa Pinjaman'		=> $d->sisa_pinjaman,
+				'Hutang'			=> $d->hutang,
+				'BPJS'				=> $d->bpjs,
+				'Gaji Bersih'		=> $d->gaji_bersih,
+			];
+		}
+		$this->load->library('importexcel');
+		$this->importexcel->create('dlsks.xlsx', $data_baru);
 	}
 }

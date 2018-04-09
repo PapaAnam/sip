@@ -41,10 +41,15 @@ class Penggajianmodel extends CI_Model{
 		return $data;
 	}	
 
-	public function data_dg_karyawan_filter($tahun, $bulan)
+	public function data_dg_karyawan_filter($tahun, $bulan, $grup)
 	{
 		$data = [];
-		$karyawan = $this->db->select('*, gaji.id as gaji_id')->from('gaji')->where('bulan', $bulan)->where('tahun', $tahun)->join('karyawan', 'karyawan.id = gaji.karyawan')->get()->result();
+		$karyawan = $this->db->select('*, gaji.id as gaji_id')
+		->from('gaji')
+		->where('bulan', $bulan)
+		->where('tahun', $tahun)
+		->where('grup', $grup)
+		->join('karyawan', 'karyawan.id = gaji.karyawan')->get()->result();
 		foreach ($karyawan as $k) {
 			$data[] = $this->generate_masa_kerja($k);
 		}

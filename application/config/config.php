@@ -527,3 +527,6 @@ $config['nama_aplikasi'] = 'Sistem Informasi Penggajian Karyawan Berbasis Web Ve
 $config['tahun_berdiri'] = 2018;
 $config['alamat'] = 'Jalan PB Sudirman Tanggul, Jember, Jawa Timur, Dusun Krajan RT 02 RW 03';
 $config['website'] = 'anamapp.store';
+$config['grup_A'] = 'images/logo-dark.png';
+$config['grup_B'] = 'images/logo-dark.png';
+// dst bisa ditambahkan sendiri
