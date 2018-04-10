@@ -13,6 +13,8 @@ class Akunmodel extends CI_Model{
 	{
 		unset($data['konfirmasi_password']);
 		$data['tgl_dibuat'] = date('Y-m-d');
+		if($data['karyawan'] == '')
+			$data['karyawan'] = null;
 		$data['password']   = md5($data['password']);
 		$this->db->insert('akun', $data);
 	}
