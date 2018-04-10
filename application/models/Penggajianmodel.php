@@ -95,11 +95,11 @@ class Penggajianmodel extends CI_Model{
 		}else{
 			$masa_kerja .= ' hari';
 		}
-		$k->masa_kerja = $k->tgl_gabung == '0000-00-00' ? '' : $masa_kerja;
-		$k->periode = bulan($k->bulan).' '.$k->tahun;
-		$k->total_pendapatan = $k->gaji_pokok + $k->tunjangan + $k->uang_harian + $k->lembur + $k->thr + $k->bonus;
-		$k->total_pengurangan = $k->sisa_pinjaman + $k->bpjs + $k->cicilan + $k->hutang;
-		$k->gaji_bersih = $k->gaji_pokok + $k->tunjangan + $k->uang_harian + $k->lembur + $k->thr + $k->bonus - $k->cicilan - $k->sisa_pinjaman - $k->hutang - $k->bpjs;
+		$k->masa_kerja 			= $k->tgl_gabung == '0000-00-00' ? '' : $masa_kerja;
+		$k->periode 			= bulan($k->bulan).' '.$k->tahun;
+		$k->total_pendapatan 	= $k->gaji_pokok + $k->tunjangan + $k->uang_harian + $k->lembur + $k->thr + $k->bonus;
+		$k->total_pengurangan 	= $k->bpjs;
+		$k->gaji_bersih 		= $k->total_pendapatan - $k->total_pengurangan;
 		return $k;
 	}
 

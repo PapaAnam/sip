@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] 						= 'dasbor';
+$route['penggajian/slip/(:num)'] 					= 'penggajian/slip/$1';
 $route['penggajian/slip/pdf/(:num)'] 				= 'penggajian/slip_pdf/$1';
 $route['penggajian/(:num)/(:num)/(:any)/cetak'] 	= 'penggajian/cetak/$1/$2/$3';
 $route['penggajian/(:num)/(:num)/(:any)/pdf'] 		= 'penggajian/pdf/$1/$2/$3';

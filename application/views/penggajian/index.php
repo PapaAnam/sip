@@ -108,7 +108,6 @@
                                 <th>Bonus</th>
                                 <th>Cicilan</th>
                                 <th>Sisa Pinjaman</th>
-                                <th>Hutang</th>
                                 <th>BPJS</th>
                                 <th>Gaji Bersih</th>
                                 <th>Aksi</th>
@@ -132,7 +131,6 @@
                                 <td><?=rp($d->bonus)?></td>
                                 <td><?=rp($d->cicilan)?></td>
                                 <td><?=rp($d->sisa_pinjaman)?></td>
-                                <td><?=rp($d->hutang)?></td>
                                 <td><?=rp($d->bpjs)?></td>
                                 <td>
                                     <?=

@@ -128,12 +128,12 @@
                                         <input onkeyup="set_gaji_bersih()" name="sisa_pinjaman" value="<?=set_value('sisa_pinjaman') ? set_value('sisa_pinjaman') : $d->sisa_pinjaman?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Hutang</label>
                                         <input onkeyup="set_gaji_bersih()" name="hutang" value="<?=set_value('hutang') ? set_value('hutang') : $d->hutang?>" type="number" class="form-control form-control-line">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>BPJS</label>

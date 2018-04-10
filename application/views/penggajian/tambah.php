@@ -70,73 +70,73 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Dibuat</label>
-                                        <input name="tgl_gaji" value="<?=set_value('tgl_gaji')?>" type="date" class="form-control form-control-line">
+                                        <input name="tgl_gaji" value="<?=set_value('tgl_gaji') ? set_value('tgl_gaji') : date('Y-m-d')?>" type="date" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gaji Pokok</label>
-                                        <input onkeyup="set_bpjs(window.event.target.value)" name="gaji_pokok" value="<?=set_value('gaji_pokok')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_bpjs(window.event.target.value)" name="gaji_pokok" value="<?=set_value('gaji_pokok') ? set_value('gaji_pokok') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tunjangan</label>
-                                        <input onkeyup="set_gaji_bersih()" name="tunjangan" value="<?=set_value('tunjangan')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="tunjangan" value="<?=set_value('tunjangan') ? set_value('tunjangan') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Uang Harian</label>
-                                        <input onkeyup="set_gaji_bersih()" name="uang_harian" value="<?=set_value('uang_harian')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="uang_harian" value="<?=set_value('uang_harian') ? set_value('uang_harian') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Lembur</label>
-                                        <input onkeyup="set_gaji_bersih()" name="lembur" value="<?=set_value('lembur')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="lembur" value="<?=set_value('lembur') ? set_value('lembur') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>THR</label>
-                                        <input onkeyup="set_gaji_bersih()" name="thr" value="<?=set_value('thr')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="thr" value="<?=set_value('thr') ? set_value('thr') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Bonus</label>
-                                        <input onkeyup="set_gaji_bersih()" name="bonus" value="<?=set_value('bonus')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="bonus" value="<?=set_value('bonus') ? set_value('bonus') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Cicilan</label>
-                                        <input onkeyup="set_gaji_bersih()" name="cicilan" value="<?=set_value('cicilan')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="cicilan" value="<?=set_value('cicilan') ? set_value('cicilan') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Sisa Pinjaman</label>
-                                        <input onkeyup="set_gaji_bersih()" name="sisa_pinjaman" value="<?=set_value('sisa_pinjaman')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="sisa_pinjaman" value="<?=set_value('sisa_pinjaman') ? set_value('sisa_pinjaman') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Hutang</label>
-                                        <input onkeyup="set_gaji_bersih()" name="hutang" value="<?=set_value('hutang')?>" type="number" class="form-control form-control-line">
+                                        <input onkeyup="set_gaji_bersih()" name="hutang" value="<?=set_value('hutang') ? set_value('hutang') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>BPJS</label>
-                                        <input readonly name="bpjs" value="<?=set_value('bpjs')?>" type="number" class="form-control form-control-line">
+                                        <input readonly name="bpjs" value="<?=set_value('bpjs') ? set_value('bpjs') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gaji Bersih</label>
-                                        <input readonly name="gaji_bersih" value="<?=set_value('gaji_bersih')?>" type="number" class="form-control form-control-line">
+                                        <input readonly name="gaji_bersih" value="<?=set_value('gaji_bersih') ? set_value('gaji_bersih') : 0?>" type="number" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

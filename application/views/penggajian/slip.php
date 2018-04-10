@@ -154,28 +154,40 @@
 					<table width="100%" class="no-border no-margin">
 						<tbody>
 							<tr>
-								<td>Sisa Pinjaman</td>
+								<td>Iuran BPJS</td>
 								<td width="10px">:</td>
 								<td width="20px">Rp.</td>
-								<td width="100px" align="right"><?=rp($d->sisa_pinjaman)?></td>
+								<td width="100px" align="right"><?=rp($d->bpjs)?></td>
 							</tr>
 							<tr>
-								<td>Iuran BPJS</td>
-								<td>:</td>
-								<td>Rp.</td>
-								<td align="right"><?=rp($d->bpjs)?></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td>Cicilan</td>
-								<td>:</td>
-								<td>Rp.</td>
-								<td align="right"><?=rp($d->cicilan)?></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td>Hutang</td>
-								<td>:</td>
-								<td>Rp.</td>
-								<td align="right"><?=rp($d->hutang)?></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 						</tbody>
 					</table>
@@ -185,7 +197,7 @@
 				<td>
 					<table width="100%" class="no-border no-margin">
 						<tbody>
-							<tr>
+							<tr style="font-weight: bold;">
 								<td>Total Pendapatan</td>
 								<td width="10px">:</td>
 								<td width="20px">Rp.</td>
@@ -197,7 +209,7 @@
 				<td>
 					<table width="100%" class="no-border no-margin">
 						<tbody>
-							<tr>
+							<tr style="font-weight: bold;">
 								<td>Total Pengurangan</td>
 								<td width="10px">:</td>
 								<td width="20px">Rp.</td>

@@ -68,7 +68,7 @@ class Penggajian extends CI_Controller {
 		$this->form_validation->set_rules('thr', 'THR', 'required|numeric');
 		$this->form_validation->set_rules('cicilan', 'Cicilan', 'required|numeric');
 		$this->form_validation->set_rules('sisa_pinjaman', 'Sisa Pinjaman', 'required|numeric');
-		$this->form_validation->set_rules('hutang', 'Hutang', 'required|numeric');
+		// $this->form_validation->set_rules('hutang', 'Hutang', 'required|numeric');
 		$this->form_validation->set_rules('bpjs', 'BPJS', 'required|numeric');
 		$this->form_validation->set_rules('gaji_bersih', 'Gaji Bersih', 'required|numeric');
 		$this->form_validation->set_message('required', '{field} wajib diisi!');
@@ -138,8 +138,14 @@ class Penggajian extends CI_Controller {
 	{
 		$this->load->model('penggajianmodel', 'pm');
 		$d = $this->pm->get_by_id($id);
-		if(!$d || $d->karyawan != $this->session->userdata('karyawan'))
+		if(is_null($d)){
 			show_404();
+		}
+		if($this->session->userdata('role') == 'karyawan'){
+			if($d->karyawan != $this->session->userdata('karyawan')){
+				show_404();
+			}
+		}
 		$this->load->view('penggajian/slip', [
 			'd'		=> $d
 		]);
@@ -149,8 +155,14 @@ class Penggajian extends CI_Controller {
 	{
 		$this->load->model('penggajianmodel', 'pm');
 		$d = $this->pm->get_by_id($id);
-		if(!$d || $d->karyawan != $this->session->userdata('karyawan'))
+		if(is_null($d)){
 			show_404();
+		}
+		if($this->session->userdata('role') == 'karyawan'){
+			if($d->karyawan != $this->session->userdata('karyawan')){
+				show_404();
+			}
+		}
 		$html = $this->load->view('penggajian/slip_pdf', [
 			'd'		=> $d
 		], true);
@@ -218,7 +230,7 @@ class Penggajian extends CI_Controller {
 				'Bonus'				=> $d->bonus,
 				'Cicilan'			=> $d->cicilan,
 				'Sisa Pinjaman'		=> $d->sisa_pinjaman,
-				'Hutang'			=> $d->hutang,
+				// 'Hutang'			=> $d->hutang,
 				'BPJS'				=> $d->bpjs,
 				'Gaji Bersih'		=> $d->gaji_bersih,
 			];

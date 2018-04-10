@@ -23,7 +23,6 @@
                                 <th>Bonus</th>
                                 <th>Cicilan</th>
                                 <th>Sisa Pinjaman</th>
-                                <th>Hutang</th>
                                 <th>BPJS</th>
                                 <th>Gaji Bersih</th>
                                 <th>Aksi</th>
@@ -46,12 +45,8 @@
                                 <td><?=rp($d->bonus)?></td>
                                 <td><?=rp($d->cicilan)?></td>
                                 <td><?=rp($d->sisa_pinjaman)?></td>
-                                <td><?=rp($d->hutang)?></td>
                                 <td><?=rp($d->bpjs)?></td>
-                                <td>
-                                    <?=
-                                    rp($d->gaji_bersih)
-                                    ?>
+                                <td><?=rp($d->gaji_bersih)?>
                                 </td>
                                 <td>
                                     <a target="_blank" href="<?=base_url('penggajian/slip/'.$d->gaji_id)?>" class="btn btn-success">
