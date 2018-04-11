@@ -70,11 +70,13 @@
 		var lembur 			= Number($('[name="lembur"]').val());
 		var thr 			= Number($('[name="thr"]').val());
 		var bonus 			= Number($('[name="bonus"]').val());
-		var cicilan 		= Number($('[name="cicilan"]').val());
-		var sisa_pinjaman 	= Number($('[name="sisa_pinjaman"]').val());
-		var hutang 			= Number($('[name="hutang"]').val());
+		// var cicilan 		= Number($('[name="cicilan"]').val());
+		// var sisa_pinjaman 	= Number($('[name="sisa_pinjaman"]').val());
+		// var hutang 			= Number($('[name="hutang"]').val());
 		var bpjs 			= Number($('[name="bpjs"]').val());
-		var total = gaji_pokok + tunjangan + uang_harian + lembur + thr + bonus + cicilan - sisa_pinjaman - hutang - bpjs;
+		var total = gaji_pokok + tunjangan + uang_harian + lembur + thr + bonus 
+		// + cicilan - sisa_pinjaman - hutang 
+		- bpjs;
 		$('[name="gaji_bersih"]').val(total);
 	}
 
